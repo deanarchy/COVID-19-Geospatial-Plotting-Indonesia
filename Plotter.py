@@ -6,6 +6,7 @@ with open('Geospatial Files/indonesia-prov.geojson') as json_file:
 import pandas as pd
 import requests
 resp = requests.get('https://api.kawalcorona.com/indonesia/provinsi')
+print('Connecting to : https://api.kawalcorona.com/...')
 if resp.status_code != 200:
     raise APIError(f'GET /provinsi/ {resp.status_code}')
 
@@ -22,7 +23,7 @@ fig = px.choropleth_mapbox(df, geojson=data,locations='Provinsi',
                     featureidkey='properties.Provinsi',
                     center={"lat": -0.789275, "lon": 113.921326},
                     mapbox_style='open-street-map',
-                    color='Positif',zoom=3,opacity=0.4,
+                    color='Positif',zoom=5,opacity=0.4,
                     title='Peta Persebaran COVID-19 Indonesia',
                     color_continuous_scale='algae',
                     hover_name='ID Provinsi',
